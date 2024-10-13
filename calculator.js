@@ -269,13 +269,12 @@ button.addEventListener('click', (event)=>{
                         numOne = operate(numOne, currentOperator, numTwo);
                         display.innerHTML = numOne;
                         displayNew = true; 
-                        currentOperator = '';
+                        currentOperator = '/';
                     }   
                 }
                 break;
-            
-            
             }
+            
         
 
 })
