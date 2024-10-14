@@ -11,6 +11,7 @@ const minus = document.querySelector("#minusbutton");
 const product = document.querySelector("#multiplybutton");
 const slash = document.querySelector("#dividebutton");
 const plusminusbutton = document.querySelector("#plusminusbutton");
+const clear = document.querySelector("#clearbutton");
 
 
 
@@ -179,8 +180,6 @@ button.addEventListener('click', (event)=>{
                     }    
                 }
                 break;
-            
-
 
             case "plusbutton":
                 if (numOne === null) {
@@ -284,7 +283,7 @@ button.addEventListener('click', (event)=>{
                     currentOperator = null;
                 }
                 break;  
-                
+
             case "plusminusbutton":  
                 if (display.innerHTML[0] != '-'){
                     display.innerHTML = "-" + display.innerHTML;
@@ -293,6 +292,9 @@ button.addEventListener('click', (event)=>{
                     display.innerHTML = display.innerHTML.slice(1);
                 }
                 break;
+            
+            case "clearbutton":
+                display.innerHTML = display.innerHTML.slice(0, display.innerHTML.length - 1);
             }
             
 
