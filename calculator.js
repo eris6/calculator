@@ -2,7 +2,6 @@ let numOne = null;
 let numTwo = null;
 let currentOperator = null;
 let displayNew = false;
-let resultDisplaying = false;
 
 const button = document.querySelector("div");
 const display = document.querySelector(".display")
@@ -13,23 +12,37 @@ const slash = document.querySelector("#dividebutton");
 const plusminusbutton = document.querySelector("#plusminusbutton");
 const clear = document.querySelector("#clearbutton");
 
-
-
 function add(numOne, numTwo){
-    return numOne + numTwo;
+    let result = numOne + numTwo;
+    if (result - Math. floor(result) !== 0){
+        result = result.toFixed(8);
+    }
+    return (result < 99999999) ? result : result.toExponential();
 }
 
 
 function subtract(numOne, numTwo){
-    return numOne - numTwo;
+    let result = numOne - numTwo;
+    if (result - Math. floor(result) !== 0){
+        result = result.toFixed(8);
+    }
+    return (result < 99999999) ? result : result.toExponential();
 }
 
 function multiply(numOne, numTwo){
-    return numOne * numTwo;
+    let result = numOne * numTwo;
+    if (result - Math. floor(result) !== 0){
+        result = result.toFixed(8);
+    }
+    return (result < 99999999) ? result : result.toExponential();
 }
 
 function divide(numOne, numTwo){
-    return numOne/numTwo;
+    let result = numOne / numTwo;
+    if (result - Math. floor(result) !== 0){
+        result = result.toFixed(8);
+    }
+    return (result < 99999999) ? result : result.toExponential();
 }
 
 function operate(numOne, operation, numTwo){
@@ -48,6 +61,8 @@ function operate(numOne, operation, numTwo){
 button.addEventListener('click', (event)=>{
     plus.style.backgroundColor = "#aa98a9";
     minus.style.backgroundColor = "#aa98a9";
+    product.style.backgroundColor = "#aa98a9";
+    slash.style.backgroundColor = "#aa98a9";
     let target = event.target
 
         switch(target.id){
@@ -182,6 +197,7 @@ button.addEventListener('click', (event)=>{
                 break;
 
             case "plusbutton":
+                plus.style.backgroundColor = "#e7dfde";
                 if (numOne === null) {
                     if (display.innerHTML !== "") {
                         numOne = parseFloat(display.innerHTML);
@@ -204,17 +220,14 @@ button.addEventListener('click', (event)=>{
                 break;
             
             case "minusbutton":
+                minus.style.backgroundColor = "#e7dfde";
                 if (numOne === null) {
                     if (display.innerHTML !== "") {
                         numOne = parseFloat(display.innerHTML);
                         display.innerHTML = '';
                     }
                     currentOperator = '-';
-                } else {
-                    console.log("numOne " + numOne);
-                    console.log("numTwo " + numTwo);
-                    console.log("operator " + currentOperator);
-                    
+                } else {                
                     if (display.innerHTML !== "") {
                         if (currentOperator === null) {
                             currentOperator = '-';
@@ -228,6 +241,7 @@ button.addEventListener('click', (event)=>{
                 }
                 break; 
             case "multiplybutton":
+                product.style.backgroundColor = "#e7dfde";
                 if (numOne === null) {
                     if (display.innerHTML !== "") {
                         numOne = parseFloat(display.innerHTML);
@@ -235,10 +249,6 @@ button.addEventListener('click', (event)=>{
                     }
                     currentOperator = '*';
                 } else {
-                    console.log("numOne " + numOne);
-                    console.log("numTwo " + numTwo);
-                    console.log("operator " + currentOperator);
-                    
                     if (display.innerHTML !== "") {
                         if (currentOperator === null) {
                             currentOperator = '*';
@@ -252,17 +262,14 @@ button.addEventListener('click', (event)=>{
                 }
                 break; 
             case "dividebutton":
+                slash.style.backgroundColor = "#e7dfde";
                 if (numOne === null) {
                     if (display.innerHTML !== "") {
                         numOne = parseFloat(display.innerHTML);
                         display.innerHTML = '';
                     }
                     currentOperator = '/';
-                } else {
-                    console.log("numOne " + numOne);
-                    console.log("numTwo " + numTwo);
-                    console.log("operator " + currentOperator);
-                    
+                } else {                    
                     if (display.innerHTML !== "") {
                         if (currentOperator === null) {
                             currentOperator = '/';
@@ -295,9 +302,9 @@ button.addEventListener('click', (event)=>{
             
             case "clearbutton":
                 display.innerHTML = display.innerHTML.slice(0, display.innerHTML.length - 1);
+                break;
             }
+
             
-
-
 })
 
