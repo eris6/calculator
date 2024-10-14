@@ -2,6 +2,7 @@ let numOne = null;
 let numTwo = null;
 let currentOperator = null;
 let displayNew = false;
+let resultDisplaying = false;
 
 const button = document.querySelector("div");
 const display = document.querySelector(".display")
@@ -9,6 +10,7 @@ const plus = document.querySelector("#plusbutton");
 const minus = document.querySelector("#minusbutton");
 const product = document.querySelector("#multiplybutton");
 const slash = document.querySelector("#dividebutton");
+const plusminusbutton = document.querySelector("#plusminusbutton");
 
 
 
@@ -198,6 +200,7 @@ button.addEventListener('click', (event)=>{
                         displayNew = true;  
                         currentOperator = '+';
                     }   
+                    
                 }
                 break;
             
@@ -273,8 +276,26 @@ button.addEventListener('click', (event)=>{
                     }   
                 }
                 break;
+            case "equalbutton":
+                if (numOne != null && display.innerHTML != ""){
+                    numTwo = parseFloat(display.innerHTML);
+                    display.innerHTML = operate(numOne, currentOperator, numTwo);
+                    numOne = null;
+                    currentOperator = null;
+                }
+                break;  
+                
+            case "plusminusbutton":  
+                if (display.innerHTML[0] != '-'){
+                    display.innerHTML = "-" + display.innerHTML;
+                }
+                else{
+                    display.innerHTML = display.innerHTML.slice(1);
+                }
+                break;
             }
             
-        
+
 
 })
+
